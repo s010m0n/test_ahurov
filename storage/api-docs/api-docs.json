@@ -1,0 +1,551 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "APIs For Fridge Master",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/booking_list": {
+            "get": {
+                "tags": [
+                    "Booking"
+                ],
+                "summary": "Get booking list",
+                "description": "Get booking list",
+                "operationId": "8696000b6791530bd5dcebc158243140",
+                "parameters": [
+                    {
+                        "name": "device_token",
+                        "in": "query",
+                        "description": "Device token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "string": {
+                                "summary": "An string value.",
+                                "value": "d9sd8s9ds89d8s9dsdsx9d"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                },
+                                                "location": {
+                                                    "type": "string",
+                                                    "example": "Уилмингтон (Северная Каролина)"
+                                                },
+                                                "price": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": "43"
+                                                },
+                                                "days": {
+                                                    "type": "integer",
+                                                    "example": "4"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "in_progress"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/booking_show": {
+            "get": {
+                "tags": [
+                    "Booking"
+                ],
+                "summary": "Show booking",
+                "description": "Show booking",
+                "operationId": "783160cc9c8395eb740fb50b0d576546",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Booking ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "int": {
+                                "summary": "An int value.",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Booking_successful"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "booking_details": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": "1"
+                                                        },
+                                                        "device_token": {
+                                                            "type": "string",
+                                                            "example": "d9sd8s9ds89d8s9dsdsx9d"
+                                                        },
+                                                        "room_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "number_of_blocks": {
+                                                            "type": "integer",
+                                                            "example": "3"
+                                                        },
+                                                        "vodume": {
+                                                            "type": "integer",
+                                                            "example": "2"
+                                                        },
+                                                        "temperature": {
+                                                            "type": "integer",
+                                                            "example": "3"
+                                                        },
+                                                        "days": {
+                                                            "type": "integer",
+                                                            "example": "4"
+                                                        },
+                                                        "price": {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "example": "4"
+                                                        },
+                                                        "secret_code": {
+                                                            "type": "string",
+                                                            "example": "hwfB8G8gzYdh"
+                                                        },
+                                                        "status": {
+                                                            "type": "string",
+                                                            "example": "in_progress"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string",
+                                                            "format": "date",
+                                                            "example": "2022-06-22T08:44:34.000000Z"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "string",
+                                                            "format": "date",
+                                                            "example": "2022-06-22T08:44:34.000000Z"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/booking_blocks": {
+            "post": {
+                "tags": [
+                    "Booking"
+                ],
+                "summary": "Book blocks",
+                "description": "Book blocks",
+                "operationId": "faab5b4cb16b1476d9fab10c89fbe37c",
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "room_id",
+                                    "volume",
+                                    "days",
+                                    "temperature",
+                                    "device_token",
+                                    "number_of_blocks",
+                                    "price"
+                                ],
+                                "properties": {
+                                    "room_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "volume": {
+                                        "type": "integer",
+                                        "example": "3"
+                                    },
+                                    "days": {
+                                        "type": "integer",
+                                        "example": "4"
+                                    },
+                                    "temperature": {
+                                        "type": "4",
+                                        "example": "3"
+                                    },
+                                    "device_token": {
+                                        "type": "string",
+                                        "example": "d9sd8s9ds89d8s9dsdsx9d"
+                                    },
+                                    "number_of_blocks": {
+                                        "type": "integer",
+                                        "example": "3"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": "4"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Booking_successful"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "booking_details": {
+                                                    "properties": {
+                                                        "device_token": {
+                                                            "type": "string",
+                                                            "example": "d9sd8s9ds89d8s9dsdsx9d"
+                                                        },
+                                                        "room_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "number_of_blocks": {
+                                                            "type": "integer",
+                                                            "example": "3"
+                                                        },
+                                                        "vodume": {
+                                                            "type": "integer",
+                                                            "example": "2"
+                                                        },
+                                                        "temperature": {
+                                                            "type": "integer",
+                                                            "example": "3"
+                                                        },
+                                                        "days": {
+                                                            "type": "integer",
+                                                            "example": "4"
+                                                        },
+                                                        "blocks": {
+                                                            "type": "integer",
+                                                            "example": "3"
+                                                        },
+                                                        "price": {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "example": "4"
+                                                        },
+                                                        "secret_code": {
+                                                            "type": "string",
+                                                            "example": "hwfB8G8gzYdh"
+                                                        },
+                                                        "status": {
+                                                            "type": "string",
+                                                            "example": "in_progress"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/calculate": {
+            "post": {
+                "tags": [
+                    "Calculate"
+                ],
+                "summary": "Calculate price",
+                "description": "Calculate price",
+                "operationId": "09e23e0d070a28b7b868296d049274ef",
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "location_id",
+                                    "volume",
+                                    "days",
+                                    "temperature"
+                                ],
+                                "properties": {
+                                    "location_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "volume": {
+                                        "type": "integer",
+                                        "example": "3"
+                                    },
+                                    "days": {
+                                        "type": "integer",
+                                        "example": "4"
+                                    },
+                                    "temperature": {
+                                        "type": "integer",
+                                        "example": "3"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "booking_details": {
+                                                    "properties": {
+                                                        "price": {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "example": "16"
+                                                        },
+                                                        "temperature": {
+                                                            "type": "integer",
+                                                            "example": "3"
+                                                        },
+                                                        "vodume": {
+                                                            "type": "integer",
+                                                            "example": "2"
+                                                        },
+                                                        "blocks": {
+                                                            "type": "integer",
+                                                            "example": "3"
+                                                        },
+                                                        "days": {
+                                                            "type": "integer",
+                                                            "example": "4"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "room": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "example": "16"
+                                                        },
+                                                        "lacation_id": {
+                                                            "type": "integer",
+                                                            "example": "3"
+                                                        },
+                                                        "temperature": {
+                                                            "type": "vodume",
+                                                            "example": "2"
+                                                        },
+                                                        "number_of_block": {
+                                                            "type": "blocks",
+                                                            "example": "3"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/location_list": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get locations list",
+                "description": "Get locations list",
+                "operationId": "89f2eed2ffe061b674fb8b7465ea45f7",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Уилмингтон (Северная Каролина)"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/location_show": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Show location",
+                "description": "Show location",
+                "operationId": "ea28776dd5a4645741c6abd148f1e48e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Location ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "int": {
+                                "summary": "An int value.",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Booking_successful"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Уилмингтон (Северная Каролина)"
+                                                },
+                                                "rooms": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": "1"
+                                                        },
+                                                        "location_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "temperature": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "number_of_blocks": {
+                                                            "type": "integer",
+                                                            "example": "3"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
